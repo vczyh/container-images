@@ -1,0 +1,16 @@
+services:
+  redis:
+    image: docker.io/bitnami/redis:6.2
+    environment:
+      - REDIS_PASSWORD=123
+      - REDIS_TLS_ENABLED=yes
+      - REDIS_TLS_PORT_NUMBER=6379
+      - REDIS_TLS_CERT_FILE=/opt/bitnami/redis/certs/redis.crt
+      - REDIS_TLS_KEY_FILE=/opt/bitnami/redis/certs/redis.key
+      - REDIS_TLS_CA_FILE=/opt/bitnami/redis/certs/ca.crt
+      - REDIS_TLS_AUTH_CLIENTS=yes
+    ports:
+      - '6379:6379'
+    volumes:
+#      - /path/to/redis-persistence:/bitnami/redis/data
+      - ./tests/tls:/opt/bitnami/redis/certs
